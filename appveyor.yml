@@ -1,0 +1,19 @@
+version: 0.2.0.{build}
+
+branches:
+  except:
+    - gh-pages
+
+skip_tags: true
+
+skip_commits:
+  message: \[(ci skip|skip ci)\].*
+
+clone_depth: 50
+
+configuration:
+  - Release
+
+build_script:
+  - cmd: build.cmd
+
