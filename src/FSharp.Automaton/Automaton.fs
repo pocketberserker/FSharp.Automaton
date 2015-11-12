@@ -94,3 +94,34 @@ let average (k: int) =
     else ((sum + n) / (float (len + 1)), (Queue.enqueue n ns, len + 1, sum + n))
 
   hiddenState (Queue.empty, 0, 0.0) step
+
+let switch sw k =
+  let f a (sw, k) =
+    match step a sw with
+    | (_, (b, Some c)) ->
+      let sw = k c >>>> purely (fun x -> (x, None)) 
+      (b, (sw, k))
+    | (sw, (b, None)) -> (b, (sw, k))
+  hiddenState (sw, k) f
+
+let hold d =
+  let f a s =
+    match a with
+    | Some a -> (a, a)
+    | None -> (s, s)
+  hiddenState d f
+
+let opt auto =
+  let f a s =
+    match a with
+    | Some x ->
+      let (s', y) = step x s
+      (Some y, s')
+    | None -> (None, s)
+  hiddenState auto f
+
+let choose f d auto = purely f >>>> opt auto >>>> hold d
+
+let filter f d =
+  let g a = if f a then Some a else None
+  choose g d
