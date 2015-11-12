@@ -2,3 +2,11 @@ source https://api.nuget.org/v3/index.json
 source https://www.nuget.org/api/v2/
 
 nuget FSharp.Core
+nuget FAKE
+nuget FAKE.Persimmon
+nuget Persimmon.Console
+nuget Nuget.CommandLine
+nuget SourceLink.Fake
+nuget Persimmon
+
+github fsharp/FAKE modules/Octokit/Octokit.fsx
