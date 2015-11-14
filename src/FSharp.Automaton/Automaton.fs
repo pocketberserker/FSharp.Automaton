@@ -120,6 +120,6 @@ let opt auto =
 
 let choose f d auto = purely f >>>> opt auto >>>> hold d
 
-let filter f d =
+let filter f d auto =
   let g a = if f a then Some a else None
-  choose g d
+  choose g d auto
