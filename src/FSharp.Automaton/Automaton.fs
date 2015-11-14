@@ -1,6 +1,4 @@
-﻿module Automaton
-
-type Automaton<'T, 'U> = Step of ('T -> (Automaton<'T, 'U> * 'U))
+﻿module FSharp.Control.Automaton
 
 let run auto b inputs =
   let step (Step f, _) a = f a
