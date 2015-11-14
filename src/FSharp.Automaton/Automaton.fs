@@ -6,13 +6,13 @@ let run auto b inputs =
 
 let step a (Step f) = f a
 
-let rec (>>>>) f g =
+let rec internal (>>>>) f g =
   Step <| fun a ->
     let (f, b) = step a f
     let (g, c) = step b g
     (f >>>> g, c)
 
-let rec (<<<<) g f =
+let rec internal (<<<<) g f =
   Step <| fun a ->
     let (f, b) = step a f
     let (g, c) = step b g

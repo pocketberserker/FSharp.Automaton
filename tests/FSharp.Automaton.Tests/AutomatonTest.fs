@@ -15,7 +15,7 @@ module AutomatonTest =
   }
 
   let ``subscribe average`` = test {
-    let auto = Automaton.(>>>>) (Automaton.purely float) (Automaton.average 10)
+    let auto = Automaton.purely float >>>> Automaton.average 10
     let average = Observable.Range(0, 10) |> run auto 0.0
     do! assertEquals 4.5 average
   }
