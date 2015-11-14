@@ -8,5 +8,6 @@ nuget Persimmon.Console
 nuget Nuget.CommandLine
 nuget SourceLink.Fake
 nuget Persimmon
+nuget Rx-Main
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx
